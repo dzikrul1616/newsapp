@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
 
+import 'package:http/retry.dart';
+import 'package:http/http.dart' as http;
 import 'app/routes/app_pages.dart';
 
-void main() {
+void main() async {
   runApp(MyApp());
 }
 
@@ -15,7 +16,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: "Application",
-      initialRoute: Routes.BOTTOMBAR,
+      initialRoute: Routes.WIDGET,
       getPages: AppPages.routes,
     );
   }

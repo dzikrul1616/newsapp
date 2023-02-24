@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:newsapp/app/modules/NavigasiItem/categori.dart';
 import 'package:newsapp/app/modules/NavigasiItem/news.dart';
+import 'package:newsapp/app/modules/NavigasiItem/Mainmenu.dart';
 import 'package:newsapp/app/modules/NavigasiItem/profil.dart';
-import 'package:newsapp/app/modules/Widget/views/login.dart';
 import 'package:newsapp/app/modules/home/views/home_view.dart';
 
 class BottomBar extends StatefulWidget {
