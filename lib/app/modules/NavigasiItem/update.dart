@@ -5,6 +5,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:http/http.dart' as http;
 import 'package:newsapp/app/modules/constant/model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:path/path.dart' as path;
 
 class MyUpdateForm extends StatefulWidget {
   final TampilNews tampilNews;
@@ -69,7 +70,7 @@ class _MyUpdateFormState extends State<MyUpdateForm> {
   }
 
   Future getImage() async {
-    final pickedFile = await picker.pickImage(
+    var pickedFile = await picker.pickImage(
         source: ImageSource.gallery, maxWidth: 1080, maxHeight: 1920);
 
     setState(() {
@@ -91,6 +92,7 @@ class _MyUpdateFormState extends State<MyUpdateForm> {
   void initState() {
     super.initState();
     getPref();
+
     id_news = widget.tampilNews.id_news;
     title = widget.tampilNews.title;
     content = widget.tampilNews.content;
@@ -112,7 +114,6 @@ class _MyUpdateFormState extends State<MyUpdateForm> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                SizedBox(height: 16.0),
                 GestureDetector(
                   onTap: getImage,
                   child: Container(
@@ -138,7 +139,7 @@ class _MyUpdateFormState extends State<MyUpdateForm> {
                 TextFormField(
                   initialValue: widget.tampilNews.title,
                   onSaved: (value) => title = value!,
-                  validator: (value) {
+                  validator: (String? value) {
                     if (value!.isEmpty) {
                       return 'Please enter title';
                     }
@@ -153,14 +154,13 @@ class _MyUpdateFormState extends State<MyUpdateForm> {
                 TextFormField(
                   initialValue: widget.tampilNews.content,
                   onSaved: (value) => content = value!,
-                  validator: (value) {
+                  validator: (String? value) {
                     if (value!.isEmpty) {
                       return 'Please enter content';
                     }
                     return null;
                   },
                   maxLines: null,
-                  keyboardType: TextInputType.multiline,
                   decoration: InputDecoration(
                     labelText: 'Content',
                     border: OutlineInputBorder(),
@@ -170,14 +170,13 @@ class _MyUpdateFormState extends State<MyUpdateForm> {
                 TextFormField(
                   initialValue: widget.tampilNews.descripton,
                   onSaved: (value) => description = value!,
-                  validator: (value) {
+                  validator: (String? value) {
                     if (value!.isEmpty) {
                       return 'Please enter description';
                     }
                     return null;
                   },
                   maxLines: null,
-                  keyboardType: TextInputType.multiline,
                   decoration: InputDecoration(
                     labelText: 'Description',
                     border: OutlineInputBorder(),
@@ -194,7 +193,6 @@ class _MyUpdateFormState extends State<MyUpdateForm> {
                     return null;
                   },
                   maxLines: null,
-                  keyboardType: TextInputType.multiline,
                   decoration: InputDecoration(
                     labelText: 'Id_news',
                     border: OutlineInputBorder(),

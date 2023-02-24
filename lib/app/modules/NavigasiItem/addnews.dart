@@ -53,7 +53,9 @@ class _MyFormState extends State<MyForm> {
       final responseData = await response.stream.toBytes();
       final responseString = String.fromCharCodes(responseData);
       final responseJson = json.decode(responseString);
-      Navigator.pop(context, true);
+      setState(() {
+        Navigator.pop(context);
+      });
       print(responseJson);
     } else {
       print('Error: ${response.reasonPhrase}');
